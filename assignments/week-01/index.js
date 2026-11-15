@@ -61,7 +61,15 @@ function createBatchHandlers(count, prefix = 'task') {
  *   - Nếu metadata rỗng hoặc không truyền: `[${LEVEL}] ${message}`
  */
 function formatLogMessage(level, message, metadata = {}) {
-  // TODO: Cài đặt hàm tại đây
+  const levelUpper = level.toUpperCase();
+  const keys = Object.keys(metadata);
+  const Countkey = keys.length;
+  if (Countkey > 0) {
+    const metadataText = JSON.stringify(metadata);
+    return `[${levelUpper}] ${message} | metadata: ${metadataText}`;
+  } else {
+    return `[${levelUpper}] ${message}`;
+  }
   throw new Error("Chưa cài đặt hàm formatLogMessage");
 }
 
